@@ -17,7 +17,7 @@ namespace Behavioral_Patterns_2
 
         public void TransitionTo(ICharacterState state)
         {
-            Console.WriteLine($"GameCharacter: Transition to {state.GetType().Name}.");
+            Console.WriteLine($"Character transitions to {state.GetType().Name} state.");
             _state = state;
             _state.SetContext(this);
         }
@@ -32,9 +32,20 @@ namespace Behavioral_Patterns_2
             _state.Defend();
         }
 
+        public void Injure()
+        {
+            _state.Injure();
+        }
+
+        public void Heal()
+        {
+            _state.Heal();
+        }
+
         public void Resurrect()
         {
             TransitionTo(new AliveState());
         }
     }
+
 }

@@ -11,5 +11,7 @@ namespace Behavioral_Patterns_2
         void SetContext(GameCharacter context);
         void Attack();
         void Defend();
+        void Injure();
+        void Heal();
     }
 }

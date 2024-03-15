@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Behavioral_Patterns_2
 {
-    public class AliveState : ICharacterState
+    public class InjuredState : ICharacterState
     {
         private GameCharacter? _context;
 
@@ -17,7 +17,7 @@ namespace Behavioral_Patterns_2
 
         public void Attack()
         {
-            Console.WriteLine("Character attacks!");
+            Console.WriteLine("Character is injured and cannot attack effectively.");
         }
 
         public void Defend()
@@ -27,12 +27,12 @@ namespace Behavioral_Patterns_2
 
         public void Injure()
         {
-            _context.TransitionTo(new InjuredState());
+            Console.WriteLine("Character is already injured.");
         }
 
         public void Heal()
         {
-            Console.WriteLine("Character is already healthy.");
+            _context.TransitionTo(new AliveState());
         }
     }
 

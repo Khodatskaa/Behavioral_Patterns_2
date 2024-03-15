@@ -24,5 +24,15 @@ namespace Behavioral_Patterns_2
         {
             Console.WriteLine("Character is dead and cannot defend!");
         }
+
+        public void Injure()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Heal()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

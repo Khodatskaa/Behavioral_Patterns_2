@@ -16,6 +16,7 @@
             character.Resurrect();
             character.Attack();
             character.Defend();
+
         }
     }
 }
