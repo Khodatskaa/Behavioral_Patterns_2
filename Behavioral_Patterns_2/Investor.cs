@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,16 +9,21 @@ namespace Behavioral_Patterns_2
 {
     public class Investor : IObserver
     {
-        private string _name;
+        private readonly string _name;
+        private readonly string _interestedSymbol;
 
-        public Investor(string name)
+        public Investor(string name, string interestedSymbol)
         {
             _name = name;
+            _interestedSymbol = interestedSymbol;
         }
 
-        public void Update(double stockPrice)
+        public void Update(Stock stock)
         {
-            Console.WriteLine($"Notification for {_name}: Stock price updated to {stockPrice}");
+            if (stock.Symbol == _interestedSymbol)
+            {
+                Console.WriteLine($"Notification to {_name}: {stock.Symbol} price updated to {stock.Price}");
+            }
         }
     }
 }

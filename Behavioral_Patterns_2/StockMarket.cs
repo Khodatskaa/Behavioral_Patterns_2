@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,16 +9,20 @@ namespace Behavioral_Patterns_2
 {
     public class StockMarket : IMarket
     {
-        private List<IObserver> _observers = new List<IObserver>();
-        private double _stockPrice;
+        private readonly List<IObserver> _observers = new List<IObserver>();
+        private readonly Dictionary<string, Stock> _stocks = new Dictionary<string, Stock>();
 
-        public double StockPrice
+        public void AddStock(Stock stock)
         {
-            get { return _stockPrice; }
-            set
+            _stocks[stock.Symbol] = stock;
+        }
+
+        public void UpdateStockPrice(string symbol, double newPrice)
+        {
+            if (_stocks.ContainsKey(symbol))
             {
-                _stockPrice = value;
-                Notify(); 
+                _stocks[symbol].SetPrice(newPrice);
+                Notify(_stocks[symbol]);
             }
         }
 
@@ -31,12 +36,17 @@ namespace Behavioral_Patterns_2
             _observers.Remove(observer);
         }
 
-        public void Notify()
+        public void Notify(Stock stock)
         {
             foreach (var observer in _observers)
             {
-                observer.Update(StockPrice);
+                observer.Update(stock);
             }
+        }
+
+        public void Notify()
+        {
+            throw new NotImplementedException();
         }
     }
 }
