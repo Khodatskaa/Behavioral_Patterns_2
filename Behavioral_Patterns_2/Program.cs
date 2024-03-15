@@ -14,6 +14,9 @@
 
             stockMarket.StockPrice = 500;
             stockMarket.StockPrice = 550;
+
+            stockMarket.Detach(investor2);
+
             stockMarket.StockPrice = 660;
         }
     }
